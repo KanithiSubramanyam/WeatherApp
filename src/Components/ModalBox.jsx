@@ -27,6 +27,11 @@ const ModalBox = (props) => {
   const onSubmit = async (data) => {
     try {
       const weatherdata = await WeatherData(data);
+      if(!weatherdata){
+        alert("Zipcode location is not found")
+        props.onHide();
+        return
+      }
       props.addWeatherData(weatherdata);
     } catch (error) {
       console.error(error.message);
